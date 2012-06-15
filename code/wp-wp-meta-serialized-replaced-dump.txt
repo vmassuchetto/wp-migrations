@@ -1,0 +1,11 @@
+array(1) {
+  [0]=>
+  array(3) {
+    ["key1"]=>
+    string(5) "test1"
+    ["key2"]=>
+    string(5) "test2"
+    ["url"]=>
+    string(23) "http://otherexample.com"
+  }
+}

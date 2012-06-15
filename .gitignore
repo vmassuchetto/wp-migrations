@@ -1,0 +1,13 @@
+
+# SWAP
+*~
+*.swp
+
+# LaTeX
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.vrb
+*.toc
