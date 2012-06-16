@@ -11,7 +11,8 @@
 \usetheme{Warsaw}
 
 \title{Grandes Migrações}
-\subtitle{Passando de Qualquer Plataforma Para o WordPress e BuddyPress}
+\subtitle{Passando de Qualquer Plataforma \\
+  Para o WordPress}
 \author{Vinicius Massuchetto}
 \institute{WordCamp Curitiba 2012}
 \date{Junho de 2012}
@@ -37,11 +38,8 @@
 
 \begin{frame}{Download}
   \begin{center}
-    Esta apresentação está disponível em:
-
+    Esta apresentação está disponível em: \\
     \url{https://github.com/viniciusmassuchetto/wordpress-presentation-migrations}
-
-    \footnotesize fontes em \LaTeX{}, códigos e diagramas
   \end{center}
 \end{frame}
 
@@ -152,7 +150,7 @@
 \begin{itemize}
   \item Para mudança de URLs deve-se fazer a substituição
         adequadamente, via plugin ou script
-  \item Exemplos:
+  \pause \item Exemplos:
   \begin{itemize}
     \item Script: Search and Replace Tool
     \item Plugin: WordPress Move
@@ -203,7 +201,7 @@
 \begin{frame}{WordPress $\rightarrow$ Suportados}
 \begin{itemize}
   \item Procedimento direto através de arquivos de exportação
-  \item Para mudança de URLs deve-se recorrer a métodos
+  \pause \item Para mudança de URLs deve-se recorrer a métodos
         similares às migrações WordPress $\rightarrow$ WordPress.
 \end{itemize}
 \end{frame}
@@ -212,14 +210,13 @@
 \section{Migrações}
 
 \begin{frame}{Tópicos a Serem Levados em Conta}
-  \pause
   \begin{itemize}
     \pause \item Tecnologia
     \pause \item Estrutura
-    \pause \item Referências internas (URLs relativas)
+    \pause \item Referências e relações internas
     \pause \item Conteúdo
     \pause \item Mídias
-    \pause \item Referência externas (URL absolutas)
+    \pause \item URLs
   \end{itemize}
 \end{frame}
 
@@ -232,6 +229,7 @@
     \begin{itemize}
       \pause \item \texttt{ini\_set("memory\_limit", -1)}
       \pause \item \texttt{set\_time\_limit(0)}
+      \pause \item ou.. \pause ajax recursivo
     \end{itemize}
     \pause \item Sistema de banco de dados da estrutura a ser migrada
     \pause \item Modo de obtenção de dados (socket, webservice, csv)
@@ -262,6 +260,10 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Tecnologias Empregadas: wpdb}
+  \lstinputlisting{./code/tec-wpdb.php}
+\end{frame}
+
 \begin{frame}{Tecnologias Empregadas: Tratamento}
   \begin{itemize}
     \pause \item Funções de tratamento:
@@ -289,6 +291,13 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Tecnologias Empregadas: Exemplo de Rotina}
+  \lstinputlisting{./code/tec-routine.php}
+\end{frame}
+
+\begin{frame}{Tecnologias Empregadas: Exemplo de Rotina}
+  \lstinputlisting{./code/tec-ajax.php}
+\end{frame}
 
 \subsection{Estrutura}
 
@@ -402,17 +411,91 @@
 
 \subsection{Mídias}
 
-\begin{frame}
+\begin{frame}{Migração de Mídias}
+  \begin{itemize}
+    \pause \item Não se contentar com as mídias inseridas no conteúdo
+    \begin{itemize}
+      \pause \item Sem rastreabilidade pelo software
+      \pause \item Sujeitas à estrutura própria de armazenamento
+    \end{itemize}
+    \pause \item Montar também a biblioteca de mídias e galerias do conteúdo
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Migração de Mídias}
+  \lstinputlisting{./code/ns-migrating-media-01.php}
+\end{frame}
+
+\begin{frame}{Migração de Mídias}
+  \lstinputlisting{./code/ns-migrating-media-02.php}
+\end{frame}
+
+\begin{frame}{Migração de Mídias}
+  \lstinputlisting{./code/ns-migrating-media-03.php}
+\end{frame}
+
+\begin{frame}{Migração de Mídias: Serviço Dinâmico}
+  \begin{itemize}
+    \item Ao invés do download pode-se fazer o serviço dinâmico de mídias.
+          Veja o arquivo \\
+          \texttt{wp-includes/ms-files.php}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Migração de Mídias: Serviço Dinâmico}
+  \lstinputlisting{./code/ns-migrating-media-dynamic-rr.txt}
+\end{frame}
+
+\begin{frame}{Migração de Mídias: Serviço Dinâmico}
+  \lstinputlisting{./code/ns-migrating-media-dynamic.php}
 \end{frame}
 
 
 \subsection{URLs}
 
-\begin{frame}
+\begin{frame}{URLs}
+  \begin{itemize}
+    \item Para cada conteúdo migrado, sempre guardar a referência
+          para o conteúdo antigo
+    \pause \item Na nova estrutura, verificar os meios de acesso no conteúdo
+           e redirecionar para o novo.
+    \pause \item Casos:
+    \begin{itemize}
+      \item A partir de referências \texttt{\$\_REQUEST}
+      \item A partir de regras de URL
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{URLs: Referências \texttt{\$\_REQUEST}}
+  \lstinputlisting{./code/url-request.php}
+\end{frame}
+
+\begin{frame}{URLs: Referências a partir de regras}
+  \lstinputlisting{./code/url-rewrite-01.php}
+\end{frame}
+
+\begin{frame}{URLs: Referências a partir de regras}
+  \lstinputlisting{./code/url-rewrite-02.php}
+\end{frame}
+
+\begin{frame}{URLs: Referências a partir de regras}
+  \lstinputlisting{./code/url-rewrite-03.php}
 \end{frame}
 
 
 \section{Considerações Finais}
+
+\begin{frame}{Considerações Finais}
+  \begin{itemize}
+    \item Migrações devem definitivamente ser incluídas como
+          componentes de projeto
+    \item O WordPress oferece um bom conjunto de ferramentas
+          para se trazer dadaos para dentro de sua estrutura.
+    \item É cabível o desenvolvimento de plugins específicos
+          para a migração de diferentes estruturas
+  \end{itemize}
+\end{frame}
 
 \begin{frame}{Referências}
 \begin{itemize}

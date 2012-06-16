@@ -1,0 +1,5 @@
+http://exemplo.com/imagens/foto.jpg
+
+RewriteRule $^$(.*/)?imagens/(.*) wp-includes/ms-files.php?file=$2 [L]
+
+http://exemplo.com/wp-includes/ms-files.php?file=foto.jpg
