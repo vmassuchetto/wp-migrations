@@ -1,6 +1,6 @@
 
 Apresentação feita para a palestra "Grandes Migrações: Passando De Qualquer
-Plataforma Para o WordPress e BuddyPress", no WordCamp Curitiba 2012.
+Plataforma Para o WordPress", no WordCamp Curitiba 2012.
 
 Para Gerar o PDF, com o latex instalado rode o comando:
 
