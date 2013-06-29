@@ -11,10 +11,11 @@
 \usepackage{graphicx}
 \usetheme{Amsterdam}
 
-\title{Grandes Migrações}
-\subtitle{Passando de Qualquer Plataforma \\
-  Para o WordPress}
+\title{Grandes Migrações com o WordPress}
+\subtitle{Passando de qualquer plataforma \\
+  para o WordPress}
 \author{Vinicius Massuchetto}
+\date{}
 
 \lstset{%
   breakatwhitespace,
@@ -36,20 +37,30 @@
 
 \begin{frame}{Download}
   \begin{center}
-    Esta apresentação está disponível em:
+
+    Código fonte da apresentação:
+
+    \vspace{0.1cm}
 
     \url{https://github.com/vmassuchetto/wp-migrations}
 
-    branch:intercon
+    \vspace{0.1cm}
+
+    \footnotesize{(branch intercon)}
+
+    \vspace{1cm}
+
+    PDF compilado:
+
+    \vspace{0.1cm}
+
+    \url{http://tinyurl.com/intercon-migracoes}
+
   \end{center}
 \end{frame}
 
-\begin{frame}{Sobre o Que Falaremos}
-\begin{itemize}
-  \item Por que tratar do assunto
-  \item Migrações simples e suportadas
-  \item Estratégias de migração de outras plataformas
-\end{itemize}
+\begin{frame}{Sobre o que falaremos}
+  \tableofcontents[subsectionstyle=hide]
 \end{frame}
 
 \section{Motivação}
@@ -118,20 +129,20 @@
   \lstinputlisting{./code/wp-wp-dump.sh}
 \end{frame}
 
-\begin{frame}{WordPress $\rightarrow$ WordPress: URLs Diferentes}
+\begin{frame}{WordPress $\rightarrow$ WordPress: URLs diferentes}
 \begin{itemize}
   \pause \item No WordPress, muitas URLs ficam persistentes no banco de dados
   \pause \item Buscar e substituir não resolve
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs Diferentes}
+\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs diferentes}
   \lstinputlisting{./code/wp-wp-meta.txt}
   \pause
   \lstinputlisting{./code/wp-wp-meta-serialized.txt}
 \end{frame}
 
-\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs Diferentes}
+\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs diferentes}
   \lstinputlisting{./code/wp-wp-meta-serialized-replaced.txt}
   \pause
   \lstinputlisting{./code/wp-wp-meta-key.php}
@@ -139,7 +150,7 @@
   \lstinputlisting{./code/wp-wp-meta-serialized-rep-dump.txt}
 \end{frame}
 
-\begin{frame}{WordPress $\rightarrow$ WordPress: URLs Diferentes}
+\begin{frame}{WordPress $\rightarrow$ WordPress: URLs diferentes}
 \begin{itemize}
   \item Para mudança de URLs deve-se fazer a substituição
         adequadamente, via plugin ou script
@@ -151,12 +162,12 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs Diferentes}
+\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs diferentes}
   \lstinputlisting{./code/wp-wp-dump.sh}
   e..
 \end{frame}
 
-\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs Diferentes}
+\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs diferentes}
   \lstinputlisting{./code/wp-wp-dump-replace-01.sh}
   \pause
   \lstinputlisting{./code/wp-wp-dump-replace-02.sh}
@@ -166,17 +177,17 @@
   \lstinputlisting{./code/wp-wp-dump-replace-04.sh}
 \end{frame}
 
-\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs Diferentes}
+\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs diferentes}
   \lstinputlisting{./code/wp-wp-serialized-replaced.txt}
   \pause
   \lstinputlisting{./code/wp-wp-meta-key.php}
 \end{frame}
 
-\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs Diferentes}
+\begin{frame}[fragile]{WordPress $\rightarrow$ WordPress: URLs diferentes}
   \lstinputlisting{./code/wp-wp-meta-serialized-replaced-dump.txt}
 \end{frame}
 
-\begin{frame}{WordPress $\rightarrow$ Suportados}
+\begin{frame}{Plataformas suportadas}
 \begin{itemize}
   \pause
   \item Blogger
@@ -191,7 +202,7 @@
 \section{Migrações Complexas}
 \subsection{Migrações Complexas}
 
-\begin{frame}{Tópicos a Serem Levados em Conta}
+\begin{frame}{Tópicos a serem levados em conta}
   \begin{itemize}
     \pause \item Tecnologia
     \pause \item Estrutura
@@ -202,7 +213,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Tecnologias Empregadas}
+\begin{frame}{Tecnologias empregadas}
   \begin{itemize}
     \pause \item Configuração dos servidores\pause \\
                  (safe mode, parâmetros de compilação)
@@ -218,7 +229,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Tecnologias Empregadas}
+\begin{frame}{Tecnologias empregadas}
   \begin{itemize}
     \pause \item Migrar através do próprio WordPress:
     \begin{itemize}
@@ -228,7 +239,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Tecnologias Empregadas: wpdb}
+\begin{frame}{Tecnologias empregadas: wpdb}
   \begin{itemize}
     \pause \item Classe \texttt{wpdb}
     \begin{itemize}
@@ -239,11 +250,11 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Tecnologias Empregadas: wpdb}
+\begin{frame}{Tecnologias empregadas: wpdb}
   \lstinputlisting{./code/tec-wpdb.php}
 \end{frame}
 
-\begin{frame}{Tecnologias Empregadas: Abstração de Banco}
+\begin{frame}{Tecnologias empregadas: Abstração de banco}
     \begin{itemize}
     \pause \item Funções de relação com o banco de dados:
     \begin{itemize}
@@ -257,7 +268,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Tecnologias Empregadas: Exemplo de Rotina}
+\begin{frame}{Tecnologias empregadas: Exemplo de rotina}
   \lstinputlisting{./code/tec-routine.php}
 \end{frame}
 
@@ -359,23 +370,23 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Formatação: Capturando Links}
+\begin{frame}{Formatação: Capturando links}
   \lstinputlisting{./code/ns-migrating-links.php}
 \end{frame}
 
-\begin{frame}{Migração de Mídias}
+\begin{frame}{Migração de mídias}
   \lstinputlisting{./code/ns-migrating-media-01.php}
 \end{frame}
 
-\begin{frame}{Migração de Mídias}
+\begin{frame}{Migração de mídias}
   \lstinputlisting{./code/ns-migrating-media-02.php}
 \end{frame}
 
-\begin{frame}{Migração de Mídias}
+\begin{frame}{Migração de mídias}
   \lstinputlisting{./code/ns-migrating-media-03.php}
 \end{frame}
 
-\begin{frame}{Migração de Mídias: Serviço Dinâmico}
+\begin{frame}{Migração de mídias: Serviço dinâmico}
   \begin{itemize}
     \item Ao invés do download pode-se fazer o serviço dinâmico de mídias.
           Veja o arquivo \\
@@ -383,18 +394,18 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Migração de Mídias: Serviço Dinâmico}
+\begin{frame}{Migração de mídias: Serviço dinâmico}
   \lstinputlisting{./code/ns-migrating-media-dynamic-rr.txt}
 \end{frame}
 
-\begin{frame}{Migração de Mídias: Serviço Dinâmico}
+\begin{frame}{Migração de mídias: Serviço dinâmico}
   \lstinputlisting{./code/ns-migrating-media-dynamic.php}
 \end{frame}
 
-\section{Considerações Finais}
-\subsection{Considerações Finais}
+\section{Considerações finais}
+\subsection{Considerações finais}
 
-\begin{frame}{Considerações Finais}
+\begin{frame}{Considerações finais}
   \begin{itemize}
     \item Migrações devem definitivamente ser incluídas como
           componentes de projeto
