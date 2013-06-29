@@ -3,4 +3,4 @@ $meta_value = array (
     "key2" => "test2",
     "url"  => "http://example.com"
 );
-add_post_meta($post_id, "meta_key", $meta_value);
+add_post_meta( $post_id, "meta_key", $meta_value );
