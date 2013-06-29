@@ -5,4 +5,5 @@ header( 'Content-Length: ' . filesize( $file ) );
 header( 'X-Accel-Redirect: '
     . str_replace( WP_CONTENT_DIR, '', $file ) );
 header( 'X-Sendfile: ' . $file );
+
 readfile( $file );
