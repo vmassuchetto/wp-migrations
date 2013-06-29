@@ -9,14 +9,12 @@
 \usepackage{verbatim}
 \usepackage{pxfonts}
 \usepackage{graphicx}
-\usetheme{Warsaw}
+\usetheme{Amsterdam}
 
 \title{Grandes Migrações}
 \subtitle{Passando de Qualquer Plataforma \\
   Para o WordPress}
 \author{Vinicius Massuchetto}
-\institute{WordCamp Curitiba 2012}
-\date{Junho de 2012}
 
 \lstset{%
   breakatwhitespace,
@@ -34,38 +32,36 @@
 \frame{\titlepage}
 
 \section{Introdução}
-
 \subsection{Introdução}
 
 \begin{frame}{Download}
   \begin{center}
-    Esta apresentação está disponível em: \\
-    \url{https://github.com/viniciusmassuchetto/wordpress-presentation-migrations}
+    Esta apresentação está disponível em:
+
+    \url{https://github.com/vmassuchetto/wp-migrations}
+
+    branch:intercon
   \end{center}
 \end{frame}
 
 \begin{frame}{Sobre o Que Falaremos}
 \begin{itemize}
   \item Por que tratar do assunto
-  \item Migrações no WordPress
-  \item Migrações em plaraformas suportadas
-  \item Migrações de outras plataformas
-  \item Estratégias de migração
+  \item Migrações simples e suportadas
+  \item Estratégias de migração de outras plataformas
 \end{itemize}
 \end{frame}
 
+\section{Motivação}
+\subsection{Motivação}
 
-\subsection{Motivação Para o Cliente}
-
-\begin{frame}{Por que falar sobre migrações com o Cliente?}
+\begin{frame}{Por que falar sobre migrações com o cliente?}
 \begin{itemize}
   \pause \item Indexação de conteúdo
   \pause \item Manutenção de usabilidade
   \pause \item Reestruturação do conteúdo
 \end{itemize}
 \end{frame}
-
-\subsection{Motivação Para a Equipe de Desenvolvimento}
 
 \begin{frame}{Por que falar sobre migrações com a equipe de desenvolvimento?}
 \begin{itemize}
@@ -79,8 +75,6 @@
 \end{itemize}
 \end{frame}
 
-\subsection{Na verdade..}
-
 \begin{frame}{E na verdade, as migrações são..}
 \begin{itemize}
   \pause \item Uma etapa de projeto que poderia ser melhor discutida
@@ -88,8 +82,8 @@
 \end{itemize}
 \end{frame}
 
-
-\section{Sistemas}
+\section{Migrações Simples}
+\subsection{Migrações Simples}
 
 \begin{frame}
 \frametitle{O que são migrações para o WordPress?}
@@ -99,8 +93,6 @@
   \pause \item Outras Plataformas $\rightarrow$ WordPress
 \end{itemize}
 \end{frame}
-
-\subsection{WordPress $\rightarrow$ WordPress}
 
 \begin{frame}{WordPress $\rightarrow$ WordPress}
 \begin{itemize}
@@ -153,10 +145,8 @@
         adequadamente, via plugin ou script
   \pause \item Exemplos:
   \begin{itemize}
-    \item Script: Search and Replace Tool
-    \item Plugin: WordPress Move
-    \item Plugin: Search and Replace
-    \item Plugin: WP Migrate Tool
+    \item Scripts: \texttt{searchreplacedb2.php}, \texttt{migra\_bd.php}
+    \item Plugins: WordPress Move, Search and Replace, WP Migrate Tool
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -186,8 +176,6 @@
   \lstinputlisting{./code/wp-wp-meta-serialized-replaced-dump.txt}
 \end{frame}
 
-\subsection{Sistemas Suportados}
-
 \begin{frame}{WordPress $\rightarrow$ Suportados}
 \begin{itemize}
   \pause
@@ -196,19 +184,12 @@
   \item Movable Type
   \item RSS
   \item Tumblr
+  \item Plugins \ldots
 \end{itemize}
 \end{frame}
 
-\begin{frame}{WordPress $\rightarrow$ Suportados}
-\begin{itemize}
-  \item Procedimento direto através de arquivos de exportação
-  \pause \item Para mudança de URLs deve-se recorrer a métodos
-        similares às migrações WordPress $\rightarrow$ WordPress.
-\end{itemize}
-\end{frame}
-
-
-\section{Migrações}
+\section{Migrações Complexas}
+\subsection{Migrações Complexas}
 
 \begin{frame}{Tópicos a Serem Levados em Conta}
   \begin{itemize}
@@ -221,18 +202,15 @@
   \end{itemize}
 \end{frame}
 
-\subsection{Tecnologia}
-
 \begin{frame}{Tecnologias Empregadas}
   \begin{itemize}
     \pause \item Configuração dos servidores\pause \\
                  (safe mode, parâmetros de compilação)
     \begin{itemize}
-      \pause \item \texttt{ini\_set("memory\_limit", -1)}
-      \pause \item \texttt{set\_time\_limit(0)}
+      \pause \item \texttt{ini\_set( 'memory\_limit', -1)}
+      \pause \item \texttt{set\_time\_limit( 0 )}
       \pause \item ou.. \pause ajax recursivo
     \end{itemize}
-    \pause \item Sistema de banco de dados da estrutura a ser migrada
     \pause \item Modo de obtenção de dados (socket, webservice, csv)
     \pause \item Linguagem a serem escritos os scripts de migração
     \pause \item Preferência: \pause PHP\pause, MySQL\pause, de dentro
@@ -265,19 +243,6 @@
   \lstinputlisting{./code/tec-wpdb.php}
 \end{frame}
 
-\begin{frame}{Tecnologias Empregadas: Tratamento}
-  \begin{itemize}
-    \pause \item Funções de tratamento:
-    \begin{itemize}
-      \pause \item \texttt{remove\_accents()}
-      \pause \item \texttt{sanitize\_title()}
-      \pause \item \texttt{normalize\_whitespace()}
-      \pause \item \texttt{make\_clickable()}
-      \pause \item \texttt{capital\_P\_dangit()}
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
 \begin{frame}{Tecnologias Empregadas: Abstração de Banco}
     \begin{itemize}
     \pause \item Funções de relação com o banco de dados:
@@ -296,18 +261,11 @@
   \lstinputlisting{./code/tec-routine.php}
 \end{frame}
 
-\begin{frame}{Tecnologias Empregadas: Exemplo de Rotina}
-  \lstinputlisting{./code/tec-ajax.php}
-\end{frame}
-
-\subsection{Estrutura}
-
 \begin{frame}{Estrutura}
   \begin{center}
-    \pause \includegraphics[height=0.8\textheight]{./img/wp-tables.png}
+    \pause \includegraphics[height=0.8\textheight,natwidth=1079,natheight=1089]{./img/wp-tables.png}
   \end{center}
 \end{frame}
-
 
 \begin{frame}{Estrutura: Mapeamento}
   \begin{itemize}
@@ -325,10 +283,10 @@
     \item \texttt{(str) descricao}
     \item \texttt{(str) rua}
     \item \texttt{(str) bairro}
-    \item \texttt{(fk)  cidade}
-    \item \texttt{(fk)  estado}
-    \item \texttt{(fk)  tipo}
-    \item \texttt{(fk)  foto}
+    \item \texttt{(fk) cidade}
+    \item \texttt{(fk) estado}
+    \item \texttt{(fk) tipo}
+    \item \texttt{(fk) foto}
   \end{itemize}
 \end{frame}
 
@@ -336,7 +294,7 @@
   \begin{itemize}
     \pause \item Post type \texttt{estabelecimento}
     \begin{itemize}
-      \item \texttt{post\_title:   nome}
+      \item \texttt{post\_title: nome}
       \item \texttt{post\_content: descricao}
     \end{itemize}
     \pause \item Chaves meta
@@ -367,33 +325,16 @@
     \item \texttt{post\_parent}
     \item Relação via custom fields
     \item Relação via plugin \\
-          (Advanced Custom Fields, Post Relationships)
+          (Advanced Custom Fields, Posts2Posts)
+    \item Outras tecnologias
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Relações Internas}
-  \begin{itemize}
-    \pause \item Solução depende do escopo de projeto
-    \pause \item Algumas transferências devem ser em camadas \\
-                 (relações recursivas)
-    \pause \item Exemplos:
-    \begin{itemize}
-      \pause \item Taxonomia ``Tipo de Estabelecimento''
-      \pause \item Itens ``Leia também'' de um post
-    \end{itemize}
-  \end{itemize}
+\begin{frame}{Mudança de tecnologia}
+  \begin{center}
+    \pause \includegraphics[height=0.8\textheight,natwidth=800,natheight=731]{./img/catracalivre.png}
+  \end{center}
 \end{frame}
-
-\begin{frame}{Relações Internas: Inserção sob Demanda}
-  \lstinputlisting{./code/ns-get-or-create-category.php}
-\end{frame}
-
-\begin{frame}{Relações Internas: Primeira camada de migração}
-  \lstinputlisting{./code/ns-migration-layers.php}
-\end{frame}
-
-
-\subsection{Conteúdo}
 
 \begin{frame}{Formatação: Basicamente o conteúdo}
   \begin{itemize}
@@ -405,22 +346,21 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Formatação: Capturando Links}
-  \lstinputlisting{./code/ns-migrating-links.php}
+\begin{frame}{Tratamento de conteúdo}
+  \begin{itemize}
+    \pause \item Funções de tratamento:
+    \begin{itemize}
+      \pause \item \texttt{remove\_accents()}
+      \pause \item \texttt{sanitize\_title()}
+      \pause \item \texttt{normalize\_whitespace()}
+      \pause \item \texttt{make\_clickable()}
+      \pause \item \texttt{capital\_P\_dangit()}
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
-
-\subsection{Mídias}
-
-\begin{frame}{Migração de Mídias}
-  \begin{itemize}
-    \pause \item Não se contentar com as mídias inseridas no conteúdo
-    \begin{itemize}
-      \pause \item Sem rastreabilidade pelo software
-      \pause \item Sujeitas à estrutura própria de armazenamento
-    \end{itemize}
-    \pause \item Montar também a biblioteca de mídias e galerias do conteúdo
-  \end{itemize}
+\begin{frame}{Formatação: Capturando Links}
+  \lstinputlisting{./code/ns-migrating-links.php}
 \end{frame}
 
 \begin{frame}{Migração de Mídias}
@@ -451,61 +391,18 @@
   \lstinputlisting{./code/ns-migrating-media-dynamic.php}
 \end{frame}
 
-
-\subsection{URLs}
-
-\begin{frame}{URLs}
-  \begin{itemize}
-    \item Para cada conteúdo migrado, sempre guardar a referência
-          para o conteúdo antigo
-    \pause \item Na nova estrutura, verificar os meios de acesso no conteúdo
-           e redirecionar para o novo.
-    \pause \item Casos:
-    \begin{itemize}
-      \item A partir de referências \texttt{\$\_REQUEST}
-      \item A partir de regras de URL
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{URLs: Referências \texttt{\$\_REQUEST}}
-  \lstinputlisting{./code/url-request.php}
-\end{frame}
-
-\begin{frame}{URLs: Referências a partir de regras}
-  \lstinputlisting{./code/url-rewrite-01.php}
-\end{frame}
-
-\begin{frame}{URLs: Referências a partir de regras}
-  \lstinputlisting{./code/url-rewrite-02.php}
-\end{frame}
-
-\begin{frame}{URLs: Referências a partir de regras}
-  \lstinputlisting{./code/url-rewrite-03.php}
-\end{frame}
-
-
 \section{Considerações Finais}
+\subsection{Considerações Finais}
 
 \begin{frame}{Considerações Finais}
   \begin{itemize}
     \item Migrações devem definitivamente ser incluídas como
           componentes de projeto
     \item O WordPress oferece um bom conjunto de ferramentas
-          para se trazer dadaos para dentro de sua estrutura.
+          para se trazer dados para dentro de sua estrutura.
     \item É cabível o desenvolvimento de plugins específicos
           para a migração de diferentes estruturas
   \end{itemize}
-\end{frame}
-
-\begin{frame}{Referências}
-\begin{itemize}
-  \footnotesize
-  \item Codex: Moving WordPress \\
-        \url{http://codex.wordpress.org/Moving_WordPress}
-  \item GitHub / interconnectit / Search-Replace-DB \\
-        \url{https://github.com/interconnectit/Search-Replace-DB}
-\end{itemize}
 \end{frame}
 
 \end{document}
