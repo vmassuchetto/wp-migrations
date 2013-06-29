@@ -2,7 +2,7 @@ Apresentação feita para a palestra "Grandes Migrações: Passando De Qualquer
 Plataforma Para o WordPress", no WordCamp Curitiba 2012.
 
 Para Gerar o PDF você precisa do [LaTeX](http://www.latex-project.org) e do
-(Rubber)[https://launchpad.net/rubber/] instalados. Em distribuições tipo
+[Rubber](https://launchpad.net/rubber) instalados. Em distribuições tipo
 Debian:
 
     apt-get install rubber
