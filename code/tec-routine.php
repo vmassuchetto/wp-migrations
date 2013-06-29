@@ -1,9 +1,9 @@
-$bd = new wpdb(..);
+$external_db = new wpdb( .. );
 $sql = "
     SELECT ...
     FROM ...
 ";
-foreach ($bd->get_results($sql) as $p) {
+foreach ($external_db->get_results( $sql ) as $p) {
 
     /* formatacao de $post_attrs com base em $p */
 
